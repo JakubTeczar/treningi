@@ -1,5 +1,12 @@
 @import "../base/base"
+@import "../abstracts/functions"
+@import "../layout/first-page-app"
 
 
-
-
+html
+    @include mq(large)
+        font-size: 54%
+    @include mq(medium)
+        font-size: 50%
+    @include mq(small)
+        font-size: 45%

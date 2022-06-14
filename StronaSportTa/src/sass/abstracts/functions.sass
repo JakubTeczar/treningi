@@ -1,3 +1,4 @@
+@use "sass:map"
 @import "../abstracts/variables"
 
 @mixin button($straight : true,$height,$width)
@@ -11,12 +12,27 @@
     color: white
     border: none
     text-transform: uppercase
-    @if is not $straight
+    @if $straight == false
         clip-path: polygon(0 0, 89% 0, 100% 100%, 0% 100%)
+    @else 
+        border: 2px solid white
+        background: $gray
 
 @mixin absolute($x,$y,$center : false)
+    content: ""
     position: absolute
     top: $y
     left: $x
     @if $center
         transform: translate(-50%,-50%)
+
+                      //400px       //~700px        //~850px        //1200px
+$breakpoints: ("mobile": 25em,"small": 43em ,"medium": 58em ,"large": 75em)
+
+@mixin mq($key)
+    $size : map.get($breakpoints, $key )
+    @media ( max-width: $size )
+        @content
+    
+        
+    

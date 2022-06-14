@@ -1,0 +1,176 @@
+@import "../abstracts/functions"
+@import "../components/card"
+
+.first-page
+    // height: 100vh
+    width: 100%
+    @import "../components/nav"
+    @include mq(medium)
+        height: 150vh
+    &__main
+        display: grid
+        padding: 3em
+        padding-bottom: 1em
+        grid-template-columns: 1fr 1fr
+        grid-template-rows: 8fr 1.5fr
+        grid-template-areas: "calendar info" "btn btn"
+        gap: 2em
+        max-height: 95% 
+        @include mq(medium)
+            grid-template-columns: 1fr
+            grid-template-rows: auto
+            grid-template-areas: "calendar" "btn" "info"
+            padding: 1.5em
+        @include mq(mobile)
+            padding: 0.7em
+        .main
+            &__calendar-container
+                grid-area: calendar
+                display: grid
+                @include mq(medium)
+                    justify-self: center
+                .calendar-switch-month
+                    display: flex
+                    align-items: flex-end
+                    height: 6rem
+                    margin-bottom: 1rem
+                    &__arrow
+                        margin: 0 1em
+                        clip-path: polygon(50% 0%, 0% 100%, 100% 100%)
+                        background: $accent
+                        width: 2.2rem
+                        height: 2rem
+                        transform: rotate(90deg) translateX(-30%)
+                        @include mq(medium)
+                            width: 2.6rem
+                            margin: 0 2em
+                        @include mq(mobile)
+                            width: 2.5rem
+                            margin: 0 1.5em
+                        &:nth-child(1)
+                            margin-left: 0
+                            transform: rotate(-90deg) translateX(30%)
+                    &__name
+                        text-transform: uppercase
+                        font-size: 4rem
+                        font-weight: bold
+                        text-align: center
+                        @include mq(mobile)
+                            font-size: 3rem 
+                    @include mq(medium)
+                        justify-self: center
+                        margin-bottom: 0rem
+                        margin-top: 2rem
+                        
+                .calendar
+                    display: grid
+                    grid-gap: 2rem
+                    grid-template-columns: repeat(7 ,min( 4.3vw, 6.5rem))
+                    grid-template-rows: repeat(6, min( 4.3vw, 6.5rem))
+                    align-items: center
+                    justify-items: center
+                    @include mq(medium)
+                        justify-content: center
+                        grid-template-columns: repeat(7 , min(8rem, 9vw))
+                        grid-template-rows: repeat(6, min(8rem, 9vw))
+                        grid-gap: 2vw
+                        padding-top: 2em
+                    @include mq(mobile)
+                        // background: red
+                        grid-gap: 3vw
+                        grid-template-columns: repeat(7 ,minmax(7vw, 9vw))
+                        grid-template-rows: repeat(6, minmax(7vw, 9vw))
+                        padding: 0.7em
+                        padding-top: 1.3em
+                    &__day
+                        background: red
+                        width: 100%
+                        height: 100%
+                        border-radius: .5rem
+                        background: $whiteCalendar
+            &__information
+                grid-area: info
+                height: 100%
+                .information
+                    width: 100%
+                    &__title
+                        display: flex
+                        align-items: flex-end
+                        margin-bottom: 1rem
+                        font-weight: 400
+                        font-size: 3.4rem
+                        line-height: 100%
+                        text-transform: uppercase
+                        height: 6rem
+                        @include mq(mobile)
+                            font-size: 3rem
+                    &__card-container
+                        max-width: 100%
+                        padding-top: 2em
+                        padding-bottom: 0.5em
+                        display: flex
+                        gap: 5rem
+                        overflow: auto
+                        &::-webkit-scrollbar
+                            height: 1rem
+
+                        &::-webkit-scrollbar-track 
+                            background:  rgba(255, 255, 255, 0.125)
+                            
+                        &::-webkit-scrollbar-thumb 
+                            background-color: darkgrey
+                            outline: 1px solid slategrey
+
+            &__start-training-btn
+                overflow: visible
+                grid-area: btn
+                display: block
+                background: red
+                margin: 3.5rem auto
+                background: transparent
+                border: none
+                color: white
+                text-transform: uppercase
+                font-size: 3.1rem
+                font-weight: 400
+                position: relative
+                & *
+                    width: 3rem
+                    height: 3rem
+                    transition: width .5s , height .5s
+                    background: transparent
+                    z-index: -1
+                    @include mq(mobile)
+                        width: 2.5rem
+                        height: 2.5rem
+                .btn-left-corner
+                    @include absolute(-2.5rem,-2rem ,false)
+                    border-top: 5px solid white
+                    border-left: 5px solid white
+                    @include mq(mobile)
+                        @include absolute(-4rem,0rem ,false)
+                .btn-right-corner
+                    border-bottom: 5px solid white
+                    border-right: 5px solid white
+                    position: absolute
+                    bottom: -2rem
+                    right: -2.5rem
+                    @include mq(mobile)
+                        bottom: 0rem
+                        right: -4rem
+                &:hover :is(.btn-right-corner ,.btn-left-corner)
+                    opacity: 1
+                    width: calc( 100% + 5rem )
+                    height: calc( 100% + 4rem )
+                    border-color: $accent
+                    @include mq(mobile)
+                        width: calc( 100% + 8rem )
+                        height: calc( 100% )
+                @include mq(small)
+                    margin: 3rem auto
+                    height: 8rem
+                @include mq(mobile)
+                    font-size: 2.5rem
+                    
+        & > *
+            overflow: auto

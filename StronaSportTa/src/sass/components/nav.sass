@@ -1,0 +1,32 @@
+@import "../abstracts/functions"
+    
+&__nav
+    display: flex
+    width: 100%
+    padding-left: 2em
+    padding-right: 2em
+    .nav
+        &__company-details
+            text-transform: uppercase
+            position: relative
+            &--name
+                font-size: 4rem
+            &--zone
+                font-size: 2.4
+                color: $accent
+                position: relative
+                &::after
+                    background: white
+                    width: 120%
+                    height: 100%
+                    @include absolute(-20%,0px,false)
+                    z-index: -1
+            &::after
+                @include absolute(-20%,0px,false)
+                z-index: -2
+                clip-path: polygon(0 0, 100% 0, 87% 100%, 0 54%)
+                width: 180%
+                height: 10rem
+                background-color: $accent
+        &__menu
+            margin-left: auto
