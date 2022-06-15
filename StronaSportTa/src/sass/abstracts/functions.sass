@@ -26,8 +26,8 @@
     @if $center
         transform: translate(-50%,-50%)
 
-                      //400px       //~700px        //~850px        //1200px
-$breakpoints: ("mobile": 25em,"small": 43em ,"medium": 58em ,"large": 75em)
+                      //350px      //400px       //~700px        //~850px        //1200px
+$breakpoints: ("fold": 22em,"mobile": 25em,"small": 43em ,"medium": 58em ,"large": 75em)
 
 @mixin mq($key)
     $size : map.get($breakpoints, $key )

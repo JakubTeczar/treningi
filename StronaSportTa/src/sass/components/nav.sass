@@ -1,26 +1,56 @@
 @import "../abstracts/functions"
+@import "../abstracts/variables"
     
-&__nav
+.first-page__nav
     display: flex
+    position: sticky
+    top: 0
+    left: 0
     width: 100%
     padding-left: 2em
     padding-right: 2em
+    z-index: 10
     .nav
         &__company-details
+            padding-top: .5em
             text-transform: uppercase
             position: relative
             &--name
                 font-size: 4rem
+                @include mq(medium)
+                    font-size: 5rem
+                    display: none
             &--zone
-                font-size: 2.4
+                font-size: 2.3rem
                 color: $accent
                 position: relative
+                text-align: center
+                @include mq(medium)
+                    font-size: 4rem
+                    margin-left: 3rem
                 &::after
                     background: white
-                    width: 120%
+                    width: 130%
                     height: 100%
                     @include absolute(-20%,0px,false)
                     z-index: -1
+                    @include mq(medium)
+                        width: 120%
+                        height: 130%
+                        @include absolute(50%,50%,true)
+                    @include mq(mobile)
+                        @include absolute(50%,50%,false)
+                    @include mq(fold)
+                        width: 110%
+                    
+                @include mq(small)
+                    // margin-top: 2rem
+                    font-size: 3.5rem
+                @include mq(mobile)
+                    font-size: 2.9rem
+                    margin: 0
+                
+                    
             &::after
                 @include absolute(-20%,0px,false)
                 z-index: -2
@@ -28,5 +58,133 @@
                 width: 180%
                 height: 10rem
                 background-color: $accent
+                @include mq(medium)
+                    display: none
         &__menu
             margin-left: auto
+            display: flex
+            flex-direction: column
+            gap: .75em
+            padding: .7em 1em
+            margin-top: .5em
+            align-items: flex-end
+            justify-content: center
+            transition: background .7s
+            &--line
+                background: black
+                width: 5.6rem
+                height: .6rem
+                border-radius: 3px
+                background: white
+                transition: width .7s
+                &:nth-child(1)
+                    width: 15rem
+                    @include mq(fold)
+                        width: 11rem
+                &:nth-child(2)
+                    width: 9.2rem
+                    @include mq(fold)
+                        width: 7.5rem
+                @include mq(fold)
+                    width: 5rem
+
+            &:hover .nav__menu--line
+                width: 7rem
+            &:hover
+                cursor: pointer
+                // border-radius: .3rem
+                // background: rgb($accent , .6 )
+            @include mq(small)
+                align-self: center
+        
+                    
+    @include mq(medium)
+        background: $accent
+        height: 10rem
+        align-items: center
+    @include mq(fold)
+        padding: 0 1rem
+
+.flyout-menu
+    position: fixed
+    height: 100vh
+    width: 100vw
+    background: $mainColor
+    z-index: 10
+    top: 0
+    left: 0
+    // display: flex
+    display: none
+    flex-direction: column
+    justify-content: center
+    align-items: flex-start
+    padding-left: 15%
+    gap: 3em
+    @include mq(fold)
+        padding-left: 10%
+    &__element , a
+        color: transparent
+        -webkit-text-stroke: 1px  white
+        font-size: 7rem
+        text-transform: uppercase
+        font-weight: bold
+        position: relative
+        text-decoration: none
+        @include mq(small)
+            font-size: 5rem 
+            // color: white
+        @include mq(fold)
+            font-size: 4rem 
+    &__element
+        &:hover::before
+            width: 100%
+        &:hover
+            cursor: pointer
+        &::before 
+            @include absolute(0,0,false)
+            content: attr(data-text)
+            color: white
+            overflow: hidden
+            height: 100%
+            width: 0%
+            transition: width .7s
+            @include mq(small)
+                display: none
+        &::after
+            @include absolute(-2rem,0,false)
+            height: 100% 
+            border-right: 1rem solid $accent
+            transition: width .8s
+            width: 0%
+            @include mq(small)
+                display: none
+        &:hover::after
+            width: calc( 100% + 4rem )
+            filter: drop-shadow(0 0 3rem white)
+.active
+    background: $gray
+    margin-top: 3rem !important
+    width: 8.5rem
+    height: 8.5rem
+    border-radius: 50%
+    position: relative
+    .nav__menu--line:nth-child(2)
+        opacity: 0
+        background: red
+    .nav__menu--line
+        position: relative
+        @include absolute( 50% ,50% ,true)
+        width: 60% !important
+        transition: none
+        height: .4rem
+        border-radius: 0
+    div:nth-child(1)
+        transform: translateX(-50%) rotate(45deg)
+    div:nth-child(3)
+        transform: translateX(-50%) rotate(-45deg)
+    @include mq(small)
+        width: 10.5rem
+        height: 10.5rem
+        margin-top: 7rem !important
+.opacity
+    background: transparent

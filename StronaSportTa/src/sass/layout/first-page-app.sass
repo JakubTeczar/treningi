@@ -1,10 +1,10 @@
 @import "../abstracts/functions"
 @import "../components/card"
+@import "../components/nav"
 
 .first-page
     // height: 100vh
     width: 100%
-    @import "../components/nav"
     @include mq(medium)
         height: 150vh
     &__main
@@ -14,13 +14,15 @@
         grid-template-columns: 1fr 1fr
         grid-template-rows: 8fr 1.5fr
         grid-template-areas: "calendar info" "btn btn"
-        gap: 2em
+        column-gap: 2em
+        row-gap: .5em
         max-height: 95% 
         @include mq(medium)
             grid-template-columns: 1fr
             grid-template-rows: auto
             grid-template-areas: "calendar" "btn" "info"
             padding: 1.5em
+            row-gap: 2em
         @include mq(mobile)
             padding: 0.7em
         .main
