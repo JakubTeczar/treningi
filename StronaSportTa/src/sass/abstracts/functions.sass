@@ -12,12 +12,15 @@
     color: white
     border: none
     text-transform: uppercase
+    transition: background .3s
     @if $straight == false
         clip-path: polygon(0 0, 89% 0, 100% 100%, 0% 100%)
+        
     @else 
         border: 2px solid white
         background: $gray
-
+    &:hover
+        background: $accent
 @mixin absolute($x,$y,$center : false)
     content: ""
     position: absolute

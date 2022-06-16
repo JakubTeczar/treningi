@@ -1,7 +1,7 @@
 @import "../abstracts/functions"
 @import "../abstracts/variables"
     
-.first-page__nav
+.nav
     display: flex
     position: sticky
     top: 0
@@ -9,7 +9,9 @@
     width: 100%
     padding-left: 2em
     padding-right: 2em
+    padding-bottom: 1rem 
     z-index: 10
+    transition: background .3s
     .nav
         &__company-details
             padding-top: .5em
@@ -188,3 +190,6 @@
         margin-top: 7rem !important
 .opacity
     background: transparent
+.scroll-down
+    background: $accent
+    overflow: hidden
