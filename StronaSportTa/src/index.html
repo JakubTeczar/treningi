@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./sass/pages/sportApp.css">
     <script src="./js/script.js" defer></script>
     <script src="./js/creatingPanel.js" defer></script>
+    <script src="./js/drag&drop.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
@@ -345,6 +346,7 @@
             <textarea name="" id="" cols="30" rows="10"></textarea>
             <div type="text" class="placeholder">Opis ćwiczenia</div>
         </div>
+        
         <button class="exercise-add-panel__add-btn">Dodaj ćwiczenie</button>
 
     </div>
@@ -362,8 +364,18 @@
             <textarea name="" id="" cols="30" rows="10"></textarea>
             <div type="text" class="placeholder">Opis ćwiczenia</div>
         </div>
+        <div class="exercise-add-panel__details">
+            <div type="text" class="exercise-add-panel__repetitions">
+                <input type="number" >
+                <div type="text" class="placeholder">pówtorzenia</div>
+            </div>
+            <div type="text" class="exercise-add-panel__weight">
+                <input type="number" >
+                <div type="text" class="placeholder">ciężar (kg)</div>
+            </div>
+        </div>
         <button class="exercise-edit-panel__delete-btn">usuń ćwiczenie</button>
-        <button class="exercise-edit-panel__close-btn">Zamknij podglad</button>
+        <button class="exercise-edit-panel__save-btn">Zapisz ćwiczenie</button>
 
     </div>
 </section>
@@ -498,7 +510,24 @@
         </div>
     </div>
 </section>
+<div class="exit">
+    <div class="cross">
+        <div class="cross__line"></div>
+        <div class="cross__line"></div>
+    </div>
+    <br>
+</div>
+<section class="confirm-choose">
 
+    <div class="confirm-choose__question">Zapisać zmiany ?</div>
+    <div class="confirm-choose__btn">
+        <button class="confirm-choose__btn--no">NIE</button>
+        <button class="confirm-choose__btn--yes">TAK</button>
+    </div>
+</section>
+<section class="error">
+    <div class="error__message">Dodaj nazwe ćwiczenia</div>
+</section>
 <!-- ///////////////////////////////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 <template class="card-temp">
     <div class="card">
@@ -514,16 +543,16 @@
 </template>
 
 <template class="exercise-temp">
-    <div class="plan__exercise">
+    <div class="plan__exercise" draggable="true">
         <input type="checkbox" class="plan__exercise--checkbox">
-        <div class="plan__exercise--name">Wyciskanie</div>
-        <div class="plan__exercise--repat">5 razy</div>
-        <div class="plan__exercise--weight">100kg</div>
+        <div class="plan__exercise--name"></div>
+        <div class="plan__exercise--repat"></div>
+        <div class="plan__exercise--weight"></div>
     </div>
 </template>
 
 <template class="select-element-temp">
-    <div class="select-container__element">
+    <div class="select-container__element" draggable="true">
         <div class="select-container__element--name">Podciąganie nachwytem</div>
         <button class="select-container__element--btn">Opis</button>
     </div>

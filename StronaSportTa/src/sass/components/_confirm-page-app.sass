@@ -1,0 +1,29 @@
+.confirm-choose
+    background: $mainColor
+    width: 100vw
+    height: 100vh
+    position: fixed
+    display: flex
+    top: 0
+    left: 0
+    z-index: 90
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    display: none
+    &__question
+        font-size: 4rem
+        text-transform: uppercase
+    &__btn
+        margin-top: 2em
+        
+        &--no 
+            @include cleanBtn($red,min-content , 17rem)
+            margin-right: 1em
+            @include mq(mobile)
+                margin-right: .2em
+        &--yes
+            margin-left: 1em
+            @include cleanBtn($green,min-content , 17rem)
+            @include mq(mobile)
+                margin-right: .2em

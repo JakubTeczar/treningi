@@ -1,7 +1,8 @@
 .select-container
     background: $black
     padding: 1em
-    padding-right: 2em
+    
+    padding-right: 1em
     overflow: auto
     background: rgb(#FFFFFF , .12)
     &__element
@@ -11,16 +12,18 @@
         align-items: center
         padding-left: 1.5rem
         text-transform: uppercase
-        font-size: 2rem
+        font-size: 1.8rem
         background: rgb(#000000,.18)
+        margin-top: .6em
         @include mq(large)
             height: 5rem   
-            font-size: 1.6rem
+            font-size: 1.5rem
+        &--name
+            margin-right: auto
         &--btn
-            margin-left: auto
             @include cleanBtn(rgb(#000000,.18),100%,9rem)
             background: rgb(#FFFFFF , .26)
-            font-size: 1.8rem
+            font-size: 1.7rem
             &:hover
                 background: rgb(black ,.1)
             @include mq(large) 

@@ -16,21 +16,30 @@
         max-width: 60rem
         margin: 0 auto
         margin-top: 7rem
+    &__details
+        display: flex
+        gap: .4em
     &__title
         @include input(min-content,100%)
         margin-bottom: 4rem
+    &__repetitions
+        @include input(min-content,50%)
+        margin-bottom: 4rem
+    &__weight
+        @include input(min-content,50%)
     &__description
         @include input(min-content,100%)
-    &__add-btn, &__close-btn
+        margin-bottom: 4rem
+    &__add-btn, &__save-btn
         @include cleanBtn($green,min-content,100%)
         font-size: 2rem
-        margin-top: 3em
+        margin-top: 1em
     &__delete-btn
         @include cleanBtn($red,min-content,100%)
         margin-top: 3em
         font-size: 2rem
         margin-bottom: 1em
-    &__close-btn
+    &__save-btn
         margin: 0
 
    
