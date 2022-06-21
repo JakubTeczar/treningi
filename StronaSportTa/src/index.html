@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./sass/pages/sportApp.css">
     <script src="./js/script.js" defer></script>
+    <script src="./js/creatingPanel.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
@@ -253,6 +254,181 @@
                 </div>
             </div>
 
+            
+
+        </div>
+        <div class="my-plans__crate-plan-btn clean-btn">Stworz Nowy trening</div>
+    </div>
+</section>
+<footer>
+    <div class="company-name">
+        @ PRODIX 2022
+    </div>
+</footer>
+
+<!-- ///////////////////////////////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<section class="creating-panel">
+    <!-- <div class="creating-panel__name">Tworzenie Planu treningowego</div> -->
+    <div type="text" class="creating-panel__title">
+        <input type="text"  data-text="tytul">
+        <div type="text" class="placeholder">nazwa planu</div>
+    </div>
+ 
+    <div class="creating-panel__switch-type">
+        <button class="creating-panel__switch-type--exercise selected">Ćwiczenia</button>
+        <button class="creating-panel__switch-type--set">Serje</button>
+    </div>
+    <div class="creating-panel__select-container select-container">
+        <div class="select-container__element">
+            <div class="select-container__element--name">Podciąganie nachwytem</div>
+            <button class="select-container__element--btn">Opis</button>
+        </div>
+    </div>
+    <button class="creating-panel__add-btn">Dodaj cwiczenie</button>
+
+    <div type="text" class="creating-panel__description">
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <!-- <input type="text"  data-text="tytul"> -->
+        <div type="text" class="placeholder">opis planu</div>
+    </div>
+
+    <div class="creating-panel__info">
+        <div class="creating-panel__info--text">Plan treningu</div>
+        <button class="creating-panel__info--delete-btn">usuń</button>
+    </div>
+
+    <div class="creating-panel__plan plan">
+        <div class="plan--line"></div>
+        <div class="plan--line"></div>
+        <div class="plan--line"></div>
+        <div class="plan__text">Nazwa ćwiczenia</div>
+        <div class="plan__text">Powtorzenia</div>
+        <div class="plan__text">Ciężar</div>
+        <div class="plan__container">
+            <div class="plan__exercise">
+                <input type="checkbox" class="plan__exercise--checkbox">
+                <div class="plan__exercise--name">Wyciskanie</div>
+                <div class="plan__exercise--repat">5 razy</div>
+                <div class="plan__exercise--weight">100kg</div>
+            </div>
+            <div class="plan__exercise">
+                <input type="checkbox" class="plan__exercise--checkbox">
+                <div class="plan__exercise--name">Wyciskanie</div>
+                <div class="plan__exercise--repat">5 razy</div>
+                <div class="plan__exercise--weight">100kg</div>
+            </div>
+            <div class="plan__set">
+                <input type="checkbox" class="plan__set--checkbox">
+                <div class="plan__set--name">Nogi</div>
+                <button class="plan__set--btn">Dodaj Ćwiczenie do serji</button>
+            </div>
+        </div>
+    </div>
+    <div class="creating-panel__action-container">
+        <div class="creating-panel__public-plan">
+            <div class="creating-panel__public-plan--text">Publiczny plan</div>
+            <input type="checkbox" class="creating-panel__public-plan--checkbox">
+        </div>
+        <button class="creating-panel__save-plan-btn">Zapisz Plan</button>
+    </div>
+    
+</section>
+<!-- ///////////////////////////////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<section class="exercise-add-panel">
+
+    <div class="exercise-add-panel__container">
+        <div type="text" class="exercise-add-panel__title">
+            <input type="text" >
+            <div type="text" class="placeholder">Nazwa Ćwiczenia</div>
+        </div>
+        <div type="text" class="exercise-add-panel__description">
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <div type="text" class="placeholder">Opis ćwiczenia</div>
+        </div>
+        <button class="exercise-add-panel__add-btn">Dodaj ćwiczenie</button>
+
+    </div>
+   
+</section>
+<!-- ///////////////////////////////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+<section class="exercise-edit-panel">
+    <div class="exercise-edit-panel__container">
+        <div type="text" class="exercise-edit-panel__title">
+            <input type="text" >
+            <div type="text" class="placeholder">Nazwa Ćwiczenia</div>
+        </div>
+        <div type="text" class="exercise-edit-panel__description">
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <div type="text" class="placeholder">Opis ćwiczenia</div>
+        </div>
+        <button class="exercise-edit-panel__delete-btn">usuń ćwiczenie</button>
+        <button class="exercise-edit-panel__close-btn">Zamknij podglad</button>
+
+    </div>
+</section>
+<!-- ///////////////////////////////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<section class="set-edit-panel">
+    <div class="set-edit-panel__container">
+        <div class="set-edit-panel__title-container">
+            <div type="text" class="set-edit-panel__title">
+                <input type="text" >
+                <div type="text" class="placeholder">Nazwa Serji</div>
+            </div>
+        </div>
+        
+        <div class="set-edit-panel__text">Ćwiczenia</div>
+        <div class="set-edit-panel__select-container select-container">
+            <div class="select-container__element">
+                <div class="select-container__element--name">Podciąganie nachwytem</div>
+                <button class="select-container__element--btn">Opis</button>
+            </div>
+        </div>
+    
+        <div class="set-edit-panel__plan plan">
+            <div class="plan--line"></div>
+            <div class="plan--line"></div>
+            <div class="plan--line"></div>
+            <div class="plan__text">Nazwa ćwiczenia</div>
+            <div class="plan__text">Powtorzenia</div>
+            <div class="plan__text">Ciężar</div>
+            <div class="plan__container">
+                <div class="plan__exercise">
+                    <input type="checkbox" class="plan__exercise--checkbox">
+                    <div class="plan__exercise--name">Wyciskanie</div>
+                    <div class="plan__exercise--repat">5 razy</div>
+                    <div class="plan__exercise--weight">100kg</div>
+                </div>
+                <div class="plan__exercise">
+                    <input type="checkbox" class="plan__exercise--checkbox">
+                    <div class="plan__exercise--name">Wyciskanie</div>
+                    <div class="plan__exercise--repat">5 razy</div>
+                    <div class="plan__exercise--weight">100kg</div>
+                </div>
+            </div>
+        </div>
+        <div class="set-edit-panel__action-container">
+            <button class="set-edit-panel__delete-btn">Usuń Serje</button>
+            <button class="set-edit-panel__save-btn">Zapisz Serje</button>
+        </div>
+    </div>
+    
+</section>
+<!-- ///////////////////////////////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<section class="select-plan">
+
+        <div class="select-plan__title">Wybierz plan treningowy</div>
+        <div class="select-plan__card-container">
+            <div class="card">
+                <div class="card__description">
+                    <div class="card__description--title">Plan FBW</div>
+                    <div class="card__description--text">Trening całego ciała dedykowana dla kalistenicznych swirow tak tak</div>
+                </div> 
+                <div class="card__action">
+                    <button class="card__action--show-details">zobacz szczegóły</button>
+                    <button class="card__action--select-plan">Wybierz plan</button>
+                </div>
+            </div>
             <div class="card">
                 <div class="card__description">
                     <div class="card__description--title">Plan FBW</div>
@@ -264,14 +440,102 @@
                 </div>
             </div>
 
+            <div class="card">
+                <div class="card__description">
+                    <div class="card__description--title">Plan FBW</div>
+                    <div class="card__description--text">Trening całego ciała dedykowana dla kalistenicznych swirow tak tak</div>
+                </div> 
+                <div class="card__action">
+                    <button class="card__action--show-details">zobacz szczegóły</button>
+                    <button class="card__action--select-plan">Wybierz plan</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card__description">
+                    <div class="card__description--title">Plan FBW</div>
+                    <div class="card__description--text">Trening całego ciała dedykowana dla kalistenicznych swirow tak tak</div>
+                </div> 
+                <div class="card__action">
+                    <button class="card__action--show-details">zobacz szczegóły</button>
+                    <button class="card__action--select-plan">Wybierz plan</button>
+                </div>
+            </div>
         </div>
-        <div class="my-plans__crate-plan-btn clean-btn">Stworz Nowy trening</div>
+    <button class="select-plan__crate-plan-btn">Stwórz nowy trening</button>
+</section>
+<!-- ///////////////////////////////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<section class="display-plan">
+    <div class="display-plan__container">
+        <div class="display-plan__progress-bar">
+            <div class="display-plan__progress-bar--title">Trening Na nogi 80%</div>
+            <div class="display-plan__progress-bar--box">
+                <div class="display-plan__progress-bar--fill"></div>
+            </div>
+            
+        </div>
+        <div class="display-plan__show-exercise">
+            <div class="display-plan__show-exercise--title">Podciąganie Podchywtem</div>
+            <div class="display-plan__show-exercise--details">
+                <div class="repetitions">
+                    <div class="value">17razy</div>
+                    <div class="sub-title">powtorzenia</div>
+                </div>
+                <div class="weight">
+                    <div class="value">3kg</div>
+                    <div class="sub-title">ciężar</div>
+                </div>
+
+            </div>
+            <div class="display-plan__show-exercise--description">
+                Generalne napinaja bardziej ta tylnia czesc placeow zeby cos sie dzialao git
+            </div>
+        </div>
+        <div class="display-plan__action-panel">
+            <button class="display-plan__previous-btn">Wstecz</button>
+            <button class="display-plan__next-btn">Następne</button>            
+            <div class="display-plan__next-exercise">NASTĘPNE ĆWICZENIE : WYCISKANIE LEŻĄC</div>      
+        </div>
     </div>
 </section>
-<footer>
-    <div class="company-name">
-        @ PRODIX 2022
+
+<!-- ///////////////////////////////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<template class="card-temp">
+    <div class="card">
+        <div class="card__description">
+            <div class="card__description--title">Plan FBW</div>
+            <div class="card__description--text">Trening całego ciała dedykowana dla kalistenicznych swirow tak tak</div>
+        </div> 
+        <div class="card__action">
+            <button class="card__action--show-details">zobacz szczegóły</button>
+            <button class="card__action--select-plan">Wybierz plan</button>
+        </div>
     </div>
-</footer>
+</template>
+
+<template class="exercise-temp">
+    <div class="plan__exercise">
+        <input type="checkbox" class="plan__exercise--checkbox">
+        <div class="plan__exercise--name">Wyciskanie</div>
+        <div class="plan__exercise--repat">5 razy</div>
+        <div class="plan__exercise--weight">100kg</div>
+    </div>
+</template>
+
+<template class="select-element-temp">
+    <div class="select-container__element">
+        <div class="select-container__element--name">Podciąganie nachwytem</div>
+        <button class="select-container__element--btn">Opis</button>
+    </div>
+</template>
+
+<template class="set-temp">
+    <div class="plan__set">
+        <input type="checkbox" class="plan__set--checkbox">
+        <div class="plan__set--name">Nogi</div>
+        <button class="plan__set--btn">Dodaj Ćwiczenie do serji</button>
+    </div>
+</template>
+
 </body>
 </html>

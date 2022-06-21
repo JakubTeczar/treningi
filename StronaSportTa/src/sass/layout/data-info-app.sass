@@ -22,10 +22,20 @@
                 @include button(false,5rem,28rem)
                 background: $gray
                 clip-path: polygon(0 0, 100% 0, 89% 100%, 0% 100%)
+                @include mq(small)
+                    font-size: 1.9rem
+                    padding: 0em
+                    text-align: center
+                    clip-path: none
             &--body
                 clip-path: polygon(0 0, 100% 0, 100% 100%, 11% 100%)
                 text-align: right
                 padding-right: 1em
+                @include mq(small)
+                    font-size: 1.9rem
+                    padding: 0em
+                    text-align: center
+                    clip-path: none
             .chosen
                 background: $accent
         .measurement

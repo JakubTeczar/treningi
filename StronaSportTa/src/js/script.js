@@ -28,7 +28,7 @@ window.addEventListener("resize" , ()=>{
 });
 window.addEventListener("scroll" , ()=>{
     if (window.innerWidth > 928){
-        if(window.scrollY > 0 && !activeMenu){
+        if(window.scrollY > 50 && !activeMenu){
             navContainer.classList.add("scroll-down");
         }else{
             navContainer.classList.remove("scroll-down"); 
