@@ -18,13 +18,15 @@
         @include mq(large)
             height: 5rem   
             font-size: 1.5rem
+            &:hover
+                cursor: grab
         &--name
             margin-right: auto
-        &--btn
-            @include cleanBtn(rgb(#000000,.18),100%,9rem)
-            background: rgb(#FFFFFF , .26)
-            font-size: 1.7rem
-            &:hover
-                background: rgb(black ,.1)
-            @include mq(large) 
-                font-size: 1.6rem
+        // &--btn
+        //     @include cleanBtn(rgb(#000000,.18),100%,9rem)
+        //     background: rgb(#FFFFFF , .26)
+        //     font-size: 1.7rem
+        //     &:hover
+        //         background: rgb(black ,.1)
+        //     @include mq(large) 
+        //         font-size: 1.6rem

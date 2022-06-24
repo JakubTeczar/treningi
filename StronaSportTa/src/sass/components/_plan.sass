@@ -23,6 +23,8 @@
             align-items: center
             position: relative
             margin-top: .5em
+            &:hover
+                cursor: pointer
             @include mq(large) 
                 font-size: 1.7rem
             &::after , &::before
@@ -41,9 +43,25 @@
             &--weight
                 margin-left: .2rem
                 width: 8rem
-            &--checkbox
-                @include checkbox(2.3rem ,2.3rem)
-                margin: 0 1.4em
+            &--name
+                margin-left: .9em
+            // &--checkbox
+            //     @include checkbox(2.3rem ,2.3rem)
+            //     margin: 0 1em
+            //     margin-right: .6em
+            //     display: none
+            // &--options
+            //     width: 2.3rem
+            //     height: 2.3rem
+            //     padding: 1.5em
+            //     background-image: url("../../img/whiteGear.png")
+            //     background-size: 50%
+            //     background-position: center
+            //     background-repeat: no-repeat
+            //     transition: transform .3s
+            //     &:hover
+            //         transform: rotate(30deg)
+            //         cursor: pointer
         &__set
             background: $lightBlue
             &::after ,&::before

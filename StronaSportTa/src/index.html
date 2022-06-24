@@ -280,10 +280,9 @@
         <button class="creating-panel__switch-type--set">Serje</button>
     </div>
     <div class="creating-panel__select-container select-container">
-        <div class="select-container__element">
+        <!-- <div class="select-container__element">
             <div class="select-container__element--name">Podciąganie nachwytem</div>
-            <button class="select-container__element--btn">Opis</button>
-        </div>
+        </div> -->
     </div>
     <button class="creating-panel__add-btn">Dodaj cwiczenie</button>
 
@@ -295,7 +294,7 @@
 
     <div class="creating-panel__info">
         <div class="creating-panel__info--text">Plan treningu</div>
-        <button class="creating-panel__info--delete-btn">usuń</button>
+        <!-- <button class="creating-panel__info--delete-btn" draggable="true">usuń</button> -->
     </div>
 
     <div class="creating-panel__plan plan">
@@ -346,7 +345,16 @@
             <textarea name="" id="" cols="30" rows="10"></textarea>
             <div type="text" class="placeholder">Opis ćwiczenia</div>
         </div>
-        
+        <div class="exercise-add-panel__details">
+            <div type="text" class="exercise-add-panel__repetitions">
+                <input type="number" >
+                <div type="text" class="placeholder">pówtorzenia</div>
+            </div>
+            <div type="text" class="exercise-add-panel__weight">
+                <input type="number" >
+                <div type="text" class="placeholder">ciężar (kg)</div>
+            </div>
+        </div>
         <button class="exercise-add-panel__add-btn">Dodaj ćwiczenie</button>
 
     </div>
@@ -365,11 +373,11 @@
             <div type="text" class="placeholder">Opis ćwiczenia</div>
         </div>
         <div class="exercise-add-panel__details">
-            <div type="text" class="exercise-add-panel__repetitions">
+            <div type="text" class="exercise-edit-panel__repetitions">
                 <input type="number" >
                 <div type="text" class="placeholder">pówtorzenia</div>
             </div>
-            <div type="text" class="exercise-add-panel__weight">
+            <div type="text" class="exercise-edit-panel__weight">
                 <input type="number" >
                 <div type="text" class="placeholder">ciężar (kg)</div>
             </div>
@@ -391,10 +399,6 @@
         
         <div class="set-edit-panel__text">Ćwiczenia</div>
         <div class="set-edit-panel__select-container select-container">
-            <div class="select-container__element">
-                <div class="select-container__element--name">Podciąganie nachwytem</div>
-                <button class="select-container__element--btn">Opis</button>
-            </div>
         </div>
     
         <div class="set-edit-panel__plan plan">
@@ -405,13 +409,13 @@
             <div class="plan__text">Powtorzenia</div>
             <div class="plan__text">Ciężar</div>
             <div class="plan__container">
-                <div class="plan__exercise">
+                <div class="plan__exercise" draggable="true">
                     <input type="checkbox" class="plan__exercise--checkbox">
                     <div class="plan__exercise--name">Wyciskanie</div>
                     <div class="plan__exercise--repat">5 razy</div>
                     <div class="plan__exercise--weight">100kg</div>
                 </div>
-                <div class="plan__exercise">
+                <div class="plan__exercise" draggable="true">
                     <input type="checkbox" class="plan__exercise--checkbox">
                     <div class="plan__exercise--name">Wyciskanie</div>
                     <div class="plan__exercise--repat">5 razy</div>
@@ -544,7 +548,6 @@
 
 <template class="exercise-temp">
     <div class="plan__exercise" draggable="true">
-        <input type="checkbox" class="plan__exercise--checkbox">
         <div class="plan__exercise--name"></div>
         <div class="plan__exercise--repat"></div>
         <div class="plan__exercise--weight"></div>
@@ -554,13 +557,12 @@
 <template class="select-element-temp">
     <div class="select-container__element" draggable="true">
         <div class="select-container__element--name">Podciąganie nachwytem</div>
-        <button class="select-container__element--btn">Opis</button>
     </div>
 </template>
 
 <template class="set-temp">
-    <div class="plan__set">
-        <input type="checkbox" class="plan__set--checkbox">
+    <div class="plan__set" draggable="true">
+        <!-- <input type="checkbox" class="plan__set--checkbox"> -->
         <div class="plan__set--name">Nogi</div>
         <button class="plan__set--btn">Dodaj Ćwiczenie do serji</button>
     </div>

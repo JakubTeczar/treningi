@@ -1,46 +1,37 @@
-let recentTitle ;
-let recentElement ;
-let afterInParentElement;
-let currentParent ;
-let CopyElement;
-let afterElement;
 let recentParent = creatingPanelSelectContainer;
-[creatingPanelSelectContainer , planContainer].forEach(el =>{
+let currentParent ,afterInParentElement;
+currentParent = creatingPanelSelectContainer;
+let afterElement ;
+[creatingPanelSelectContainer , planContainer ,setEditPanelContainer, setEditSelectContainer].forEach(el =>{
     el.addEventListener("dragover", e =>{
         currentParent = el;
         e.preventDefault();
-
-        if (recentParent.className ==creatingPanelSelectContainer.className && currentParent.className == "plan__container"){
-            CopyElement = document.querySelector(".dragging").cloneNode(true);
-        }
-      
-        const dragedElement = document.querySelector(".dragging");  
-        recentElement= dragedElement;
-        afterElement = changePosition( el , e.clientY);
-        recentTitle = dragedElement.querySelector(".select-container__element--name") || dragedElement.querySelector(".plan__exercise--name");
-        
-        if(recentParent.className != "plan__container" || recentParent.className == "plan__container" && el.className == "plan__container"){
-            if (afterElement.element  == null){
-                el.appendChild(dragedElement);
-                
+        const dragedElement = document.querySelector(".dragging");
+        if(dragedElement){
+            if (currentParent == creatingPanelSelectContainer && recentParent ==planContainer){
             }else{
-                el.insertBefore(dragedElement,afterElement.element);
+                afterElement = changePosition( el , e.clientY);
+                if (afterElement.element  == null){
+                    el.appendChild(dragedElement);
+                }else{
+                    el.insertBefore(dragedElement,afterElement.element);
+                }
+                if (currentParent == recentParent && currentParent==creatingPanelSelectContainer ||currentParent==setEditSelectContainer){
+                    afterInParentElement= afterElement;
+                }
             }
-            
         }
-        if (currentParent == recentParent && currentParent.className ==creatingPanelSelectContainer.className){
-            afterInParentElement= afterElement;
-        }
+        
     });
 });
+
 const changePosition = (container , y) =>{
     let draggAbleEl;
-    if(container.className == "plan__container"){
-        draggAbleEl = [...planContainer.querySelectorAll(".plan__exercise:not(.dragging)")];
+    if(container ===planContainer || container === setEditPanelContainer){
+        draggAbleEl = [...container.querySelectorAll(".plan__exercise:not(.dragging)")];
     }else{
         draggAbleEl = [...container.querySelectorAll(".select-container__element:not(.dragging)")];
     }
-    
     return draggAbleEl.reduce((closest , child ) =>{
         const box = child.getBoundingClientRect();
         const offset = y - box.top - box.height / 2;
@@ -52,65 +43,38 @@ const changePosition = (container , y) =>{
     },{offset: Number.NEGATIVE_INFINITY} );
     // console.log(container,y);
 };
-
-planContainer.addEventListener("dragend" , ()=>{
-    if(recentParent.className ==creatingPanelSelectContainer.className){
+const appendNewElement = (that,set) =>{
+    if(set){
         if (afterInParentElement.element  == null){
-            
-            creatingPanelSelectContainer.appendChild(CopyElement);
+            setEditSelectContainer.appendChild(that.div);
         }else{
-            creatingPanelSelectContainer.insertBefore(CopyElement,afterInParentElement.element);
+            console.log(setEditSelectContainer.insertBefore(that.div,afterInParentElement.element));
         }
-        CopyElement.classList.remove("dragging");
-        appendNewElement(creatingPanelSelectContainer,".select-container__element");
-    }
-    recentElement.remove();
-    newElement = exerciseTemp.content.cloneNode(true);
-    newElement.querySelector(".plan__exercise--name").textContent =recentTitle.textContent;
-    if (afterElement.element  == null){
-        planContainer.appendChild(newElement);
-        
     }else{
-        planContainer.insertBefore(newElement,afterElement.element);
-    }
-    
-    appendNewElement(planContainer,".plan__exercise");
-    
-});
-
-const appendNewElement = (container, className) =>{
-    const elements = container.querySelectorAll(className);
-        elements.forEach(el => {
-            el.addEventListener("dragstart", () => {
-                el.classList.add("dragging");
-                recentParent = container;
-            });
-            el.addEventListener("click" , ()=>{
-                console.log("to cos tu");
-                switchDisplay(exerciseEditPanel,"grid");
-            });
-        
-            el.addEventListener("dragend", () => {
-                el.classList.remove("dragging");
-        
-            });
-        });
-};
-
-// zrob zeby mozna było przeciagnać z jednego do drugiego ale na odwrót juz nie
-// 
-
-creatingPanelSelectContainer.addEventListener("dragend" , ()=>{
-
-        recentElement.remove();
-        newElement = selectElementTemp.content.cloneNode(true);
-        newElement.querySelector(".select-container__element--name").textContent = recentTitle.textContent;
-      
-        if (afterElement.element  == null){
-            creatingPanelSelectContainer.appendChild(newElement);
-            
+        if (afterInParentElement.element  == null){
+            creatingPanelSelectContainer.appendChild(that.div);
         }else{
-            creatingPanelSelectContainer.insertBefore(newElement,afterElement.element);
+            console.log(creatingPanelSelectContainer.insertBefore(that.div,afterInParentElement.element));
         }
-        appendNewElement(creatingPanelSelectContainer,".select-container__element");
-});
+    }
+    let newLeftList = [];
+    if(that.elements){
+        allSets.forEach(el =>{
+            if(el.parent == creatingPanelSelectContainer){
+                newLeftList.push(el);
+            }
+        });
+        allOnLeftSets = newLeftList;
+    }else{
+        allExercise.forEach(el =>{
+            if(el.parent == creatingPanelSelectContainer){
+                newLeftList.push(el);
+            }
+        });
+        allOnLeftExercise = newLeftList;
+    }
+  
+
+    
+    // console.log(that.div,allExercise[allExercise.indexOf(that)].div);
+};

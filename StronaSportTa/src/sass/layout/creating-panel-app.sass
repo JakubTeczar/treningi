@@ -74,12 +74,16 @@
             background: $accent
             clip-path: polygon(0 0, 89% 0, 100% 100%, 0% 100%)
         &--delete-btn
-            @include cleanBtn($red,min-content,10rem)
+            @include cleanBtn($red,min-content,16rem)
             font-size: 1.8rem
+            display: none
             @include mq(large)
                 @include cleanBtn($red,100%,10rem)
                 font-size: 1.3rem
-           
+        .active-delete-btn
+            display: block   
+            &:hover
+                cursor: grab
     &__plan 
         grid-row: 3/8
         grid-column: 3/4
