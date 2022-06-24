@@ -8,6 +8,7 @@
     <script src="./js/script.js" defer></script>
     <script src="./js/creatingPanel.js" defer></script>
     <script src="./js/drag&drop.js" defer></script>
+    <script src="./js/planFunctions.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
@@ -305,23 +306,7 @@
         <div class="plan__text">Powtorzenia</div>
         <div class="plan__text">Ciężar</div>
         <div class="plan__container">
-            <div class="plan__exercise">
-                <input type="checkbox" class="plan__exercise--checkbox">
-                <div class="plan__exercise--name">Wyciskanie</div>
-                <div class="plan__exercise--repat">5 razy</div>
-                <div class="plan__exercise--weight">100kg</div>
-            </div>
-            <div class="plan__exercise">
-                <input type="checkbox" class="plan__exercise--checkbox">
-                <div class="plan__exercise--name">Wyciskanie</div>
-                <div class="plan__exercise--repat">5 razy</div>
-                <div class="plan__exercise--weight">100kg</div>
-            </div>
-            <div class="plan__set">
-                <input type="checkbox" class="plan__set--checkbox">
-                <div class="plan__set--name">Nogi</div>
-                <button class="plan__set--btn">Dodaj Ćwiczenie do serji</button>
-            </div>
+
         </div>
     </div>
     <div class="creating-panel__action-container">
@@ -409,18 +394,7 @@
             <div class="plan__text">Powtorzenia</div>
             <div class="plan__text">Ciężar</div>
             <div class="plan__container">
-                <div class="plan__exercise" draggable="true">
-                    <input type="checkbox" class="plan__exercise--checkbox">
-                    <div class="plan__exercise--name">Wyciskanie</div>
-                    <div class="plan__exercise--repat">5 razy</div>
-                    <div class="plan__exercise--weight">100kg</div>
-                </div>
-                <div class="plan__exercise" draggable="true">
-                    <input type="checkbox" class="plan__exercise--checkbox">
-                    <div class="plan__exercise--name">Wyciskanie</div>
-                    <div class="plan__exercise--repat">5 razy</div>
-                    <div class="plan__exercise--weight">100kg</div>
-                </div>
+            
             </div>
         </div>
         <div class="set-edit-panel__action-container">
@@ -481,6 +455,52 @@
     <button class="select-plan__crate-plan-btn">Stwórz nowy trening</button>
 </section>
 <!-- ///////////////////////////////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<section class="show-plan">
+
+    <div class="show-plan__container">
+        <div class="show-plan__title">trening na plecy</div>
+        <div class="show-plan__description">Trening opiera się głównie na ćwiczeniach korekcyjnych dolnej
+            części pleców do wykonania treningu będą ci potrzebne hantle 2kg </div>
+
+        <div class="show-plan__element-container plan">
+            <div class="plan--line"></div>
+            <div class="plan--line"></div>
+            <div class="plan--line"></div>
+            <div class="plan__text">Nazwa ćwiczenia</div>
+            <div class="plan__text">Powtorzenia</div>
+            <div class="plan__text">Ciężar</div>
+            <div class="plan__container">
+
+            </div>
+        </div>
+        <div class="btn-container">
+            <button class="show-plan__add-btn">Dodaj do swoich planów  <!--edytuj swoj plan--></button>
+            <button class="show-plan__close-btn">Zamknij podgląd</button>
+        </div>
+    </div>
+
+</section>
+<!-- ///////////////////////////////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<section class="show-set">
+    <div class="show-set__container">
+        <div class="show-set__title">Nogi</div>
+        <div class="show-set__element-container plan">
+            <div class="plan--line"></div>
+            <div class="plan--line"></div>
+            <div class="plan--line"></div>
+            <div class="plan__text">Nazwa ćwiczenia</div>
+            <div class="plan__text">Powtorzenia</div>
+            <div class="plan__text">Ciężar</div>
+            <div class="plan__container">
+                
+            </div>
+        </div>
+        <div class="btn-container">
+            <button class="show-set__close-btn">Zamknij podgląd</button>
+        </div>
+    </div>
+</section>
+<!-- ///////////////////////////////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 <section class="display-plan">
     <div class="display-plan__container">
         <div class="display-plan__progress-bar">
@@ -536,8 +556,8 @@
 <template class="card-temp">
     <div class="card">
         <div class="card__description">
-            <div class="card__description--title">Plan FBW</div>
-            <div class="card__description--text">Trening całego ciała dedykowana dla kalistenicznych swirow tak tak</div>
+            <div class="card__description--title"></div>
+            <div class="card__description--text"></div>
         </div> 
         <div class="card__action">
             <button class="card__action--show-details">zobacz szczegóły</button>

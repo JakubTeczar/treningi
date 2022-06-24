@@ -28,7 +28,7 @@ let afterElement ;
 const changePosition = (container , y) =>{
     let draggAbleEl;
     if(container ===planContainer || container === setEditPanelContainer){
-        draggAbleEl = [...container.querySelectorAll(".plan__exercise:not(.dragging)")];
+        draggAbleEl = [...container.querySelectorAll(".plan__exercise:not(.dragging)"),...container.querySelectorAll(".plan__set:not(.dragging)")];
     }else{
         draggAbleEl = [...container.querySelectorAll(".select-container__element:not(.dragging)")];
     }

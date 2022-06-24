@@ -73,12 +73,15 @@ const errorMessage = (text) =>{
 const takeOrder = (container,type)=>{
     let list = [];
     let elements;
-    type = (type =="exercise") ? allExercise : "allSets";
+    type = (type =="exercise") ? allExercise : [...allExercise,...allSets];
 
    if (container == creatingPanelSelectContainer){
     elements = creatingPanelSelectContainer.querySelectorAll(".select-container__element");
    }else if(container == planContainer){
-    elements = creatingPanelSelectContainer.querySelectorAll(".plan__exercise");
+    elements = planContainer.querySelectorAll(".plan__exercise");
+    if (type !=allExercise){
+        elements= planContainer.querySelectorAll(".plan__set , .plan__exercise");
+    }
     ///to jeszcze trzeba złączyć z serjami 
    }else if(container == setEditPanelContainer){
     elements = setEditPanelContainer.querySelectorAll(".plan__exercise");
@@ -223,14 +226,23 @@ exerciseEditPanelSaveBtn.addEventListener("click" , ()=>{
 setEditPanelDeleteBtn.addEventListener("click" , ()=>{
     if (allSets.indexOf(currentSet) != -1){
         allSets.splice(allSets.indexOf(currentSet), 1);
+        if (allOnLeftSets.indexOf(currentSet) != -1){
+            allOnLeftSets.splice(allOnLeftSets.indexOf(currentSet), 1);
+            currentSet.div.remove();
+        }
         currentSet.div.remove();
     }
+ 
     exit.click();
 });
 //usuwanie ćwiczenia
 exerciseEditPanelDeleteBtn.addEventListener("click" , ()=>{
     if (allExercise.indexOf(currentExercise) != -1){
         allExercise.splice(allExercise.indexOf(currentExercise), 1);
+        if (allOnLeftExercise.indexOf(currentExercise) != -1){
+            allOnLeftExercise.splice(allOnLeftExercise.indexOf(currentExercise), 1);
+            currentExercise.div.remove();
+        }
         currentExercise.div.remove();
     }
     exit.click();
@@ -433,5 +445,5 @@ class set{
 
 };
 /////////////    \\\\\\\\\\\\\\
-mainStartTrainingBtn.click();
-CratePlanBtn.click();
+// mainStartTrainingBtn.click();
+// CratePlanBtn.click();
