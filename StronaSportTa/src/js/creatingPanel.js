@@ -34,6 +34,7 @@ const exerciseTemp = document.querySelector(".exercise-temp");
 const setTemp = document.querySelector(".set-temp");
 
 const mainStartTrainingBtn = document.querySelector(".main__start-training-btn");
+const selectPanCardContainer = document.querySelector(".select-plan__card-container");
 
 let recentPanel = [];
 let cuurentPanel, timeOutId;
@@ -102,6 +103,11 @@ const takeOrder = (container,type)=>{
 //zaczęcie treningu (otwarcie wyboru planków treningowych)
 mainStartTrainingBtn.addEventListener("click" , () =>{
     switchDisplay(selectPlan,"grid");
+    selectPanCardContainer.innerHTML = "";
+    allPlans.forEach(el =>{
+        selectPanCardContainer.appendChild(el.div) ;
+    });
+
 });
 
 //wyjscie z obecnego panelu 
@@ -111,6 +117,9 @@ exit.addEventListener("click" , () =>{
     zIndex -= 1;
     if (zIndex == 20){
         exit.style.display ="none";
+        allPlans.forEach(el =>{
+            myPlansCardContainer.appendChild(el.div) ;
+        });
     }
     if(setEditPanel == recentEl){
         allOnLeftExercise = takeOrder(setEditSelectContainer,"exercise");

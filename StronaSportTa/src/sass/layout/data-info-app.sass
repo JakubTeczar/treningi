@@ -75,8 +75,20 @@
         flex: 1
         min-height: 30rem
         width: 100%
-        background: #2e417c
+        height: 60vh
+        display: flex
+        // background: #2e417c
+        @include mq(small)
+            margin-top: 3em
+        #myChart
+            max-width: 100%
+            min-height: 220px
+            max-height: 500px
+            margin: auto 0
+            padding: 0 1em
     &__save-btn
+        margin-bottom: auto
+        margin-top: 0
         @include mq(medium)
             margin: 0 auto !important
         

@@ -85,7 +85,7 @@
                 grid-column: 2/3
             @include mq(fold)
                 grid-column: 1/4
-            &::after
+            .line
                 @include absolute(50%,0, false)
                 background: white
                 width: 2px 
@@ -138,12 +138,15 @@
         //     background: red
     &__previous-btn
         border-color: $accent
+        &:hover
+            background: $accent
     &__next-btn
         justify-self: start
         grid-column: 3/4
     &__next-exercise
         grid-column: 1/-1
         justify-self: center
+        text-transform: uppercase
         @include mq(small)
             text-align: center
         
