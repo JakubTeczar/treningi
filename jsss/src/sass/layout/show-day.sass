@@ -1,0 +1,44 @@
+.show-day
+    background: $mainColor
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 20
+    padding: 3em 4em
+    display: none
+    @include mq(mobile)
+        padding: 1em
+    &__container
+        max-width:  100rem
+        height: 100%
+        margin: 0 auto
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+      
+
+    &__top-panel
+        text-align: center
+        margin-bottom: 5em
+    &__text
+        font-size: 4rem
+        text-transform: uppercase
+    &__date
+        font-size: 3rem
+        color: $accent
+    &__action-panel
+        gap: 2em
+        display: flex
+        @include mq(mobile)
+            flex-direction: column
+    &__yes-btn
+        @include  cleanBtn($green,auto,20rem)
+        @include mq(mobile)
+            width: 80vw
+    &__no-btn
+        @include  cleanBtn($red,auto,20rem)
+        @include mq(mobile)
+            width: 80vw 

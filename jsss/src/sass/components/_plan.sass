@@ -1,0 +1,95 @@
+.plan
+    display: grid
+    grid-template-columns: auto .2rem 14rem .2rem 8rem
+    grid-template-rows: 4.5rem 2px 1.5rem auto
+    .plan
+        &--line
+            background: white
+            &:nth-child(1)   
+                grid-row: 1/-1
+                grid-column: 2/3
+            &:nth-child(2)   
+                grid-row: 1/-1
+                grid-column: 4/5
+            &:nth-child(3)   
+                grid-row: 2/3
+                grid-column: 1/-1
+        &__exercise , &__set
+            display: flex
+            font-size: 1.9rem
+            text-transform: uppercase
+            background: $gray
+            height: 5rem
+            align-items: center
+            position: relative
+            margin-top: .5em
+            direction: ltr
+            &:hover
+                cursor: pointer
+            @include mq(large) 
+                font-size: 1.7rem
+            &::after , &::before
+                @include absolute(calc(100% - 8.2rem),0,false)
+                width: .2rem
+                height: 5rem
+                background: white
+            &::before
+                @include absolute(calc(100% - 22.4rem),0,false)
+            &--repat , &--weight
+                text-align: center
+                font-size: 1.7rem 
+            &--repat
+                width: 14rem
+                margin-left: auto
+            &--weight
+                margin-left: .2rem
+                width: 8rem
+            &--name
+                margin-left: .9em
+            // &--checkbox
+            //     @include checkbox(2.3rem ,2.3rem)
+            //     margin: 0 1em
+            //     margin-right: .6em
+            //     display: none
+            // &--options
+            //     width: 2.3rem
+            //     height: 2.3rem
+            //     padding: 1.5em
+            //     background-image: url("../../img/whiteGear.png")
+            //     background-size: 50%
+            //     background-position: center
+            //     background-repeat: no-repeat
+            //     transition: transform .3s
+            //     &:hover
+            //         transform: rotate(30deg)
+            //         cursor: pointer
+        &__set
+            background: $lightBlue
+            &::after ,&::before
+                display: none
+            &--btn
+                @include cleanBtn($mainColor,calc(100% - 6px),30rem)
+                font-size: 1.4rem
+                background: $mainColor
+                margin-left: auto
+                margin-right: 3px
+        &__text
+            padding: 0 1em
+            font-size: 1.5rem
+            text-transform: uppercase
+            font-weight: bold
+            text-align: center
+            margin-top: auto
+            padding-bottom: 0.5em
+            height: 100%
+            display: flex
+            align-items: flex-end
+            &:nth-child(2)
+                grid-column: 3/4
+            &:nth-child(3)
+                grid-column: 5/6
+        &__container
+            grid-row: 4/5
+            grid-column: 1/6
+            overflow: auto
+            direction: rtl

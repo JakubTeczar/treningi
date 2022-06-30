@@ -1,0 +1,66 @@
+.select-plan 
+    background: $mainColor
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 20
+    padding: 4em 6em
+    display: grid
+    grid-template-columns: 100%
+    grid-template-rows: 15% min(70%,60rem)  auto
+    display: none
+    @include mq(large)
+        padding: 1em 2.5em
+        grid-template-rows: 1fr min-content 1fr
+        // overflow: hidden
+    @include mq(medium)
+        padding: 1em 1em
+    &__title
+        font-size: 4rem
+        margin-bottom: 2em
+        text-align: center
+        text-transform: uppercase
+        font-weight: bold
+        @include mq(large)
+            margin: auto
+            // margin-bottom: .5em
+        @include mq(mobile)
+            font-size: 3rem
+            line-height: 140%
+    &__card-container
+        overflow: auto
+        height: 100%
+        display: flex
+        gap: 3em
+        width: min-content
+        max-width: 100%
+        margin: 0 auto
+        &::-webkit-scrollbar
+            height: 1rem
+
+        &::-webkit-scrollbar-track 
+            background:  rgba(255, 255, 255, 0.125)
+            
+        &::-webkit-scrollbar-thumb 
+            background-color: darkgrey
+            outline: 1px solid slategrey
+        // align-items: center
+        // justify-content: center
+    &__crate-plan-btn
+        @include cleanBtn(white, min-content , 40rem)
+        background: $gray
+        margin: auto
+        margin-top: 1em
+        &:hover
+            background: $accent
+        @include mq(medium)
+            font-size: 2rem
+            max-width: 90%
+        @include mq(mobile)
+            font-size: 1.7rem
+            max-width: 90%
+            border: 1px solid white
+            margin-top: 3em
+            line-height: 300%
