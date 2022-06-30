@@ -2,13 +2,14 @@ let recentParent = creatingPanelSelectContainer;
 let currentParent ,afterInParentElement;
 currentParent = creatingPanelSelectContainer;
 let afterElement ;
+//wszystkie kontenery w których jest drag&drop
 [creatingPanelSelectContainer , planContainer ,setEditPanelContainer, setEditSelectContainer].forEach(el =>{
     el.addEventListener("dragover", e =>{
         currentParent = el;
         e.preventDefault();
         const dragedElement = document.querySelector(".dragging");
         if(dragedElement){
-            if (currentParent == creatingPanelSelectContainer && recentParent ==planContainer){
+            if (currentParent == creatingPanelSelectContainer && recentParent ==planContainer || currentParent == setEditSelectContainer && recentParent == setEditPanelContainer){
             }else{
                 afterElement = changePosition( el , e.clientY);
                 if (afterElement.element  == null){
@@ -25,6 +26,7 @@ let afterElement ;
     });
 });
 
+//wykrywanie elementu nad myszką
 const changePosition = (container , y) =>{
     let draggAbleEl;
     if(container ===planContainer || container === setEditPanelContainer){
@@ -43,6 +45,7 @@ const changePosition = (container , y) =>{
     },{offset: Number.NEGATIVE_INFINITY} );
     // console.log(container,y);
 };
+//dodawanie elementu w odpowienim miejscu
 const appendNewElement = (that,set) =>{
     if(set){
         if (afterInParentElement.element  == null){
@@ -59,8 +62,9 @@ const appendNewElement = (that,set) =>{
     }
     let newLeftList = [];
     if(that.elements){
+        console.log("duppaa");
         allSets.forEach(el =>{
-            if(el.parent == creatingPanelSelectContainer){
+            if(el.parent == creatingPanelSelectContainer && el.div.className == "select-container__element"){
                 newLeftList.push(el);
             }
         });

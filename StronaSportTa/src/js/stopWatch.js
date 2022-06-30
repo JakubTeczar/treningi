@@ -1,3 +1,4 @@
+//stoper
 let timer ="";
 
 let hr = 0;
@@ -48,21 +49,28 @@ function timerCycle() {
     if (hr == 0){
         hrString ="";
     }else{
-        hrString = hr >1 ? "godziny": "godzine";
+        hrString = hr >1 ? hr+"godziny": hr+"godzine";
     }
     if (min == 0){
         minString ="";
     }else{
-        minString = min >4 ? "minut": "minuty";
+        minString = min >4 ? min+"minut": min+"minuty";
     }
     
-
-    timer = hrString!="" && minString!= "" ?hrString +" i "+ minString :hrString +" "+ minString;
-    console.log(timer,min,sec);
+    if (hrString!="" && minString!= "" ){
+      timer = hrString +" i "+ minString
+    }else{
+      if (hrString=="" && minString!= "" ){
+        timer =  minString;
+      }
+    }
     setTimeout("timerCycle()", 1000);
   }
 }
 
 function resetTimer() {
-    timer = '0';
+  hr = 0;
+  min = 0;
+  sec = 0;
+  timer = '0';
 }

@@ -41,8 +41,10 @@ let cuurentPanel, timeOutId;
 let zIndex = 20;
 let allExercise = [];
 let allOnLeftExercise = [];
+let allDBLeftExercise = [];
 let allSets = [];
 let allOnLeftSets = [];
+let allDBLeftSets = [];
 let currentExercise;
 let currentSet;
 let currentType =exerciseAddPanel;
@@ -111,6 +113,7 @@ mainStartTrainingBtn.addEventListener("click" , () =>{
 });
 
 //wyjscie z obecnego panelu 
+// .querySelector(".cross")
 exit.addEventListener("click" , () =>{
     recentEl = recentPanel.pop();
     recentEl.style.display = "none";
@@ -120,9 +123,20 @@ exit.addEventListener("click" , () =>{
         allPlans.forEach(el =>{
             myPlansCardContainer.appendChild(el.div) ;
         });
+        // planHistory[0].forEach(el =>{
+        //     informationCardContainer.appendChild(el.div) ;
+        // });
+        
     }
     if(setEditPanel == recentEl){
         allOnLeftExercise = takeOrder(setEditSelectContainer,"exercise");
+    }
+    if(recentEl == setEditPanel && currentType == exerciseAddPanel){
+        allOnLeftExercise.forEach(el=>{
+            
+            creatingPanelSelectContainer.appendChild(el.div);
+            el.parent = creatingPanelSelectContainer;
+        });
     }
 });
 
@@ -133,7 +147,11 @@ CratePlanBtn.addEventListener("click" , () =>{
 //otwieranie panelu do dodawania cwiczen
 creatingPanelAddExercise.addEventListener("click" , () =>{
     switchDisplay(currentType,"grid");
+    setEditPanel.querySelector("input").value = "";
     saveOrAdd ="add";
+    setEditPanelContainer.querySelectorAll(".plan__exercise").forEach(el =>{
+        el.remove();
+    });
     // allSets
 });
 
@@ -165,11 +183,15 @@ setEditPanelSaveBtn.addEventListener("click" , () =>{
             const div = selectElementTemp.content.firstElementChild.cloneNode(true);
             div.style.background = "#26B5C5";
             div.querySelector(".select-container__element--name").textContent = title;
+            setEditPanel.querySelector("input").value = "";
             creatingPanelSelectContainer.appendChild(div);
         
             let newEl = new set(title,takeOrder(setEditPanelContainer,"exercise"),div);
             allOnLeftSets.push(newEl);
             exit.click();  
+            setEditPanelContainer.querySelectorAll(".plan__exercise").forEach(el =>{
+                el.remove();
+            });
         }
     }else{
         if(currentSet.parent == planContainer){
@@ -294,7 +316,7 @@ class exercise{
         this.eventListener();
         if(!set){
             allExercise.push(this);
-            console.log("dodaje" , this);
+            // console.log("dodaje" , this);
         }
     }
     changeDesign(){
@@ -377,10 +399,11 @@ class exercise{
   
 };
 class set{
-    constructor(title , elements , div){
+    constructor(title , elements , div,DB=false){
         this.title = title;
         this.elements = elements;
         this.div = div;
+        this.DB = DB;
         this.parent = creatingPanelSelectContainer;
         allSets.push(this);
         this.eventListener()
@@ -415,12 +438,17 @@ class set{
         });
     };
     editSet(){
+
         setEditPanel.querySelector("input").value =this.title;
+        setEditPanelContainer.innerHTML = "";
+        allOnLeftExercise.forEach(e =>{
+            setEditSelectContainer.appendChild(e.div);
+            e.parent = setEditSelectContainer;
+        });
 
         this.elements.forEach(el => {
             setEditPanelContainer.appendChild(el.div);
         });
-        
     };
 
     changeDesign(){

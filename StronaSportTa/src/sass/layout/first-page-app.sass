@@ -97,10 +97,13 @@
                         &:hover
                             background: #1cbaf382
                             cursor: pointer
+                    .workoutDay
+                        background: $green !important
                     .hidden
                         background: $gray
                     .today
                         background: $accent
+                        border: .5em solid $accent
             &__information
                 grid-area: info
                 height: 100%
@@ -119,11 +122,12 @@
                             font-size: 3rem
                     &__card-container
                         max-width: 100%
-                        padding-top: 2em
+                        margin-top: 2em
                         padding-bottom: 0.5em
                         display: flex
                         gap: 5rem
                         overflow: auto
+                        background: rgb(black,.1)
                         &::-webkit-scrollbar
                             height: 1rem
 

@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./sass/pages/sportApp.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="./js/sendJson.js" defer></script>
+    <script src="./js/getJson.js" defer></script>
+
     <script src="./js/stopWatch.js" defer></script>
     <script src="./js/script.js" defer></script>
     <script src="./js/creatingPanel.js" defer></script>
@@ -56,38 +59,11 @@
         <div class="main__information">
             <div class="information__title">ostatnie aktywność</div>
             <div class="information__card-container">
-                <div class="card">
-                    <div class="card__description">
-                        <div class="card__description--title">Plan FBW</div>
-                        <div class="card__description--text">Trening całego ciała dedykowana dla kalistenicznych swirow tak tak</div>
-                    </div> 
-                    <div class="card__action">
-                        <button class="card__action--show-details">zobacz szczegóły</button>
-                        <button class="card__action--select-plan">Wybierz plan</button>
-                    </div>
-                </div>
+               
+            <div class="empty">
+                <div class="empty__title">Nie zarejstrowano aktywności</div>
+            </div>
 
-                <div class="card">
-                    <div class="card__description">
-                        <div class="card__description--title">Plan FBW</div>
-                        <div class="card__description--text">Trening całego ciała dedykowana dla kalistenicznych swirow tak tak</div>
-                    </div> 
-                    <div class="card__action">
-                        <button class="card__action--show-details">zobacz szczegóły</button>
-                        <button class="card__action--select-plan">Wybierz plan</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card__description">
-                        <div class="card__description--title">Plan FBW</div>
-                        <div class="card__description--text">Trening całego ciała dedykowana dla kalistenicznych swirow tak tak</div>
-                    </div> 
-                    <div class="card__action">
-                        <button class="card__action--show-details">zobacz szczegóły</button>
-                        <button class="card__action--select-plan">Wybierz plan</button>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -153,87 +129,13 @@
 <section class="my-plans container">
     <div class="my-plans__top">
         <div class="my-plans__title">Twoje plany treningowe</div>
-        <div class="my-plans__btn-container">
+        <!-- <div class="my-plans__btn-container">
             <div class="btn-container__text">Publicznie plany</div>
             <input type="checkbox" class="btn-container__input" name="" id="">
-        </div>
+        </div> -->
     </div>
     <div class="my-plans__bottom">
         <div class="my-plans__card-container">
-            <div class="card">
-                <div class="card__description">
-                    <div class="card__description--title">Plan FBW</div>
-                    <div class="card__description--text">Trening całego ciała dedykowana dla kalistenicznych swirow tak tak</div>
-                </div> 
-                <div class="card__action">
-                    <button class="card__action--show-details">zobacz szczegóły</button>
-                    <button class="card__action--select-plan">Wybierz plan</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card__description">
-                    <div class="card__description--title">Plan FBW</div>
-                    <div class="card__description--text">Trening całego ciała dedykowana dla kalistenicznych swirow tak tak</div>
-                </div> 
-                <div class="card__action">
-                    <button class="card__action--show-details">zobacz szczegóły</button>
-                    <button class="card__action--select-plan">Wybierz plan</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card__description">
-                    <div class="card__description--title">Plan FBW</div>
-                    <div class="card__description--text">Trening całego ciała dedykowana dla kalistenicznych swirow tak tak</div>
-                </div> 
-                <div class="card__action">
-                    <button class="card__action--show-details">zobacz szczegóły</button>
-                    <button class="card__action--select-plan">Wybierz plan</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card__description">
-                    <div class="card__description--title">Plan FBW</div>
-                    <div class="card__description--text">Trening całego ciała dedykowana dla kalistenicznych swirow tak tak</div>
-                </div> 
-                <div class="card__action">
-                    <button class="card__action--show-details">zobacz szczegóły</button>
-                    <button class="card__action--select-plan">Wybierz plan</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card__description">
-                    <div class="card__description--title">Plan FBW</div>
-                    <div class="card__description--text">Trening całego ciała dedykowana dla kalistenicznych swirow tak tak</div>
-                </div> 
-                <div class="card__action">
-                    <button class="card__action--show-details">zobacz szczegóły</button>
-                    <button class="card__action--select-plan">Wybierz plan</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card__description">
-                    <div class="card__description--title">Plan FBW</div>
-                    <div class="card__description--text">Trening całego ciała dedykowana dla kalistenicznych swirow tak tak</div>
-                </div> 
-                <div class="card__action">
-                    <button class="card__action--show-details">zobacz szczegóły</button>
-                    <button class="card__action--select-plan">Wybierz plan</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card__description">
-                    <div class="card__description--title">Plan FBW</div>
-                    <div class="card__description--text">Trening całego ciała dedykowana dla kalistenicznych swirow tak tak</div>
-                </div> 
-                <div class="card__action">
-                    <button class="card__action--show-details">zobacz szczegóły</button>
-                    <button class="card__action--select-plan">Wybierz plan</button>
-                </div>
-            </div>
 
             <div class="card">
                 <div class="card__description">
@@ -260,6 +162,9 @@
 
 <!-- ///////////////////////////////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 <section class="creating-panel">
+    <div class="creating-panel__mobile">
+        <div class="title">Łatwiej stworzyć plan treningowy na dużym ekranie :)</div>
+    </div>
     <!-- <div class="creating-panel__name">Tworzenie Planu treningowego</div> -->
     <div type="text" class="creating-panel__title">
         <input type="text"  data-text="tytul">
@@ -300,7 +205,7 @@
         </div>
     </div>
     <div class="creating-panel__action-container">
-        <div class="creating-panel__public-plan">
+        <div class="creating-panel__public-plan" style="opacity: 0;">
             <div class="creating-panel__public-plan--text">Publiczny plan</div>
             <input type="checkbox" class="creating-panel__public-plan--checkbox">
         </div>
@@ -464,7 +369,7 @@
             </div>
         </div>
         <div class="btn-container">
-            <button class="show-plan__add-btn">Dodaj do swoich planów  <!--edytuj swoj plan--></button>
+            <!-- <button class="show-plan__add-btn">Dodaj do swoich planów  edytuj swoj plan</button> -->
             <button class="show-plan__close-btn">Zamknij podgląd</button>
         </div>
     </div>
@@ -489,6 +394,21 @@
             <button class="show-set__close-btn">Zamknij podgląd</button>
         </div>
     </div>
+</section>
+<!-- ///////////////////////////////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<section class="show-day">
+
+    <div class="show-day__container">
+        <div class="show-day__top-panel">
+            <div class="show-day__text">Czy byłeś na treningu</div>
+            <div class="show-day__date">20.06.2022</div>
+        </div>
+        <div class="show-day__action-panel">
+            <button class="show-day__yes-btn chosen">Tak</button>
+            <button class="show-day__no-btn">Nie</button>
+        </div>
+    </div>
+   
 </section>
 <!-- ///////////////////////////////////////////////////////-------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 <section class="display-plan">
@@ -530,6 +450,7 @@
         <div class="cross__line"></div>
         <div class="cross__line"></div>
     </div>
+    <div class="exit__title">Zamknij</div>
     <br>
 </div>
 <section class="confirm-choose">

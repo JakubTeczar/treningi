@@ -8,6 +8,8 @@ const myPlansCratePlanBtn= document.querySelector(".my-plans__crate-plan-btn");
 
 
 const showPlan = document.querySelector(".show-plan");
+const showSet = document.querySelector(".show-set");
+const showSetCloseBtn = document.querySelector(".show-set__close-btn");
 const showPlanCloseBtn = document.querySelector(".show-plan__close-btn");
 const showPlanAddBtn = document.querySelector(".show-plan__add-btn");
 
@@ -15,9 +17,11 @@ const displayPlanPreviousBtn = document.querySelector(".display-plan__previous-b
 const displayPlanNextBtn = document.querySelector(".display-plan__next-btn");
 
 let displayedPlan;
-let displayedPlanName;
+let wholeDisplayedPlan;
 let displayedExerciseNumber = 0;
 let allPlans = [];
+let currentFillPlan;
+let planHistory =[[],[]];
 
 myPlansCratePlanBtn.addEventListener("click" , ()=>{
     switchDisplay(creatingPanel,"grid");
@@ -25,9 +29,10 @@ myPlansCratePlanBtn.addEventListener("click" , ()=>{
 showPlanCloseBtn.addEventListener("click" , ()=>{
     exit.click();
 });
-showPlanAddBtn.addEventListener("click" , ()=>{
+showSetCloseBtn.addEventListener("click" , ()=>{
     exit.click();
 });
+
 //poprzednio wyswietlane zadanie
 displayPlanPreviousBtn.addEventListener("click" , ()=>{
     if(displayedExerciseNumber != 0){
@@ -49,6 +54,13 @@ displayPlanNextBtn.addEventListener("click" , ()=>{
             exit.click();
         }
         displayedExerciseNumber = 0;
+        planHistory[0].push(wholeDisplayedPlan);
+        const date = new Date();
+        if(workoutHistory.indexOf((date.getDate()+"."+(date.getMonth()+1)+"."+date.getFullYear())) != -1){
+            workoutHistory.push((date.getDate()+"."+(date.getMonth()+1)+"."+date.getFullYear()));
+        }
+        saveOnDBHistory();
+        console.log("tak tak");
     }else{
         stopTimer();
         displayedExerciseNumber+=1;
@@ -56,7 +68,7 @@ displayPlanNextBtn.addEventListener("click" , ()=>{
         displayPlan.querySelector(".display-plan__show-exercise--details").style.display = "none";
 
         displayPlan.querySelector(".display-plan__show-exercise--description").innerHTML = "Ukończyłęś swój 1 trening zają ci on <br>"+timer;
-        displayPlan.querySelector(".display-plan__progress-bar--title").textContent = displayedPlanName+ ` 100%`;
+        displayPlan.querySelector(".display-plan__progress-bar--title").textContent = wholeDisplayedPlan.title+ ` 100%`;
         displayPlan.querySelector(".display-plan__progress-bar--fill").style.width = `calc(100% - 1.5rem)`;
         displayPlanNextBtn.textContent ="ZAKOŃCZ TRENING";
     }
@@ -66,26 +78,34 @@ displayPlanNextBtn.addEventListener("click" , ()=>{
 
 creatingPanelSaveBtn.addEventListener("click" , ()=>{
     let title =creatingPanelTitle.value;
-
+    creatingPanelTitle.value= "";
     if(title !=""){
+        if (myPlansCardContainer.querySelector(".empty")){
+            myPlansCardContainer.innerHTML = ""; 
+        }
         let public =creatingPanelCheckbox.checked
         let description =creatingPanelDescription.value;
+        creatingPanelDescription.value = "";
         div = cardTemp.content.firstElementChild.cloneNode(true);
         div.querySelector(".card__description--title").textContent = title;
-        div.querySelector(".card__description--text").textContent = creatingPanelDescription.value;
+        div.querySelector(".card__description--text").textContent = description;
         let newEl = new plan (title,description,div,public ,takeOrder(planContainer , "all"));
         myPlansCardContainer.appendChild(newEl.div);
         let lengthRecentPanel =recentPanel.length ;
         for(let i = 0 ; i < lengthRecentPanel ; i++){
             exit.click();
         }
-      
+        takeOrder(planContainer , "all").forEach(el =>{
+            el.div.remove();
+        });
+        // sendJson(allPlans ,"plans");
         // exit.click();
     }else{
         errorMessage("dodaj nazwe planu");
     }
 });
 
+//rozbija serie na pojedyncze ćwiczenia
 const setToExercise = (array)=>{
     flatArray =[];
     array.forEach(el =>{
@@ -98,6 +118,7 @@ const setToExercise = (array)=>{
     return flatArray;
 };
 
+//usuwa niepotrzebne elementy
 const deleteUnnecessaryDiv = ()=>{
     displayPlanNextBtn.textContent ="Następne";
     if(!displayedPlan[displayedExerciseNumber].repetitions){
@@ -118,6 +139,7 @@ const deleteUnnecessaryDiv = ()=>{
     displayPlan.querySelector(".display-plan__show-exercise--details").style.display = "flex";
 };
 
+//wyswietlanie zadan
 const dispalyTask = ()=>{
     let planPercentages = Math.round((displayedExerciseNumber / (displayedPlan.length )) *100);
 
@@ -125,14 +147,15 @@ const dispalyTask = ()=>{
     displayPlan.querySelector(".repetitions .value").textContent = displayedPlan[displayedExerciseNumber].repetitions +" razy";
     displayPlan.querySelector(".weight .value").textContent = displayedPlan[displayedExerciseNumber].weight +" kg";
     displayPlan.querySelector(".display-plan__show-exercise--description").textContent = displayedPlan[displayedExerciseNumber].description;
-    displayPlan.querySelector(".display-plan__progress-bar--title").textContent = displayedPlanName+ ` ${planPercentages}%`;
+    displayPlan.querySelector(".display-plan__progress-bar--title").textContent = wholeDisplayedPlan.title+ ` ${planPercentages}%`;
     displayPlan.querySelector(".display-plan__progress-bar--fill").style.width = `calc(${planPercentages}% - 1.5rem)`;
     let nextExercise =(displayedExerciseNumber+1) < displayedPlan.length ? displayedPlan[displayedExerciseNumber+1].title : "";
     displayPlan.querySelector(".display-plan__next-exercise").textContent  =nextExercise!="" ? `następne ćwiczenie: ${nextExercise}`:"";
     
 };
+
 class plan {
-        constructor(title , description , div , publicPlan , elements,myPlan=true)
+        constructor(title , description , div , publicPlan , elements,myPlan=true,allPlan = true)
         {
             this.title = title;
             this.description = description;
@@ -140,7 +163,9 @@ class plan {
             this.public = publicPlan;
             this.elements = elements;
             this.myPlan = myPlan;
-            allPlans.push(this);
+            if(allPlan){
+                allPlans.push(this);
+            }
             this.eventListener()
         }
         eventListener(){
@@ -149,7 +174,7 @@ class plan {
                 switchDisplay(displayPlan,"block");
                 displayedExerciseNumber = 0;
                 displayedPlan = setToExercise(this.elements);
-                displayedPlanName= this.title;
+                wholeDisplayedPlan= this;
                 dispalyTask();
                 deleteUnnecessaryDiv();
                 resetTimer();
@@ -157,15 +182,37 @@ class plan {
             });
             this.div.querySelector(".card__action--show-details").addEventListener("click" , ()=>{
                 console.log("pokaż detale");
+                currentFillPlan = this;
                 switchDisplay(showPlan,"block");
-                showPlan.querySelector(".show-plan__title").value = this.title;
-                showPlan.querySelector(".show-plan__description").value = this.description;
+
+                showPlan.querySelector(".show-plan__title").textContent = this.title;
+                showPlan.querySelector(".show-plan__description").textContent = this.description;
                 showPlan.querySelector(".plan__container").innerHTML = "";
                 this.elements.forEach(el => {
                     console.log(el);
                     let copy = el.div.cloneNode(true)
                     showPlan.querySelector(".plan__container").appendChild(copy);
                     copy.setAttribute("draggable", "fasle");
+                    if (el.elements){
+                        copy.addEventListener("click", ()=>{
+                            switchDisplay(showSet,"grid");
+                            el.elements.forEach(el =>{
+                                showSet.querySelector(".plan__container").innerHTML = "";
+                                const div = exerciseTemp.content.firstElementChild.cloneNode(true);
+                                div.querySelector(".plan__exercise--name").textContent = el.title;
+                                div.querySelector(".plan__exercise--repat").textContent = el.repetitions+ "razy";
+                                div.querySelector(".plan__exercise--weight").textContent = el.weight+ "KG";
+                                showSet.querySelector(".plan__container").appendChild(div);
+                            });
+                            console.log(el.elements);
+                        });
+
+                        copy.querySelector(".plan__set--btn").addEventListener("click" , ()=>{
+                            console.log(el.elements);
+                        });
+                        copy.querySelector(".plan__set--btn").textContent = "Sprawdz ćwiczenia w seri";
+                        console.log(el.elements);
+                    }
                 });
                 
             });
@@ -173,116 +220,78 @@ class plan {
 }
 
 
+let DBPlans;
+// getJson("plans").then((valueFromDB)=>{
+//     console.log(valueFromDB);
+//     DBPlans = Object(valueFromDB);
+//     CreatePlanFromDB();
+// }).then(()=>{
+//     if(allPlans.length == 0){
+//         const div = emptyTemp.content.firstElementChild.cloneNode(true);
+//         div.querySelector(".empty__title").textContent = "Nie stworzyłeś jeszcze żadnego planu treningowego";
+//         myPlansCardContainer.appendChild(div);
+//     }
+// });
+// const renderLeftExercise = ()=>{
 
+// };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let div = cardTemp.content.firstElementChild.cloneNode(true);
-div.querySelector(".card__description--title").textContent = "test";
-div.querySelector(".card__description--text").textContent = "taki tam trening no wlasnie taki";
-let newElnew =new plan ("test","taki tam trening no wlasnie taki",div,"false" ,[
-    {
-        "title": "pompki",
-        "description": "",
-        "weight": "",
-        "repetitions": "15",
-        "div": {},
-        "parent": {},
-        "set": false
-    },
-    {
-        "title": "nogi",
-        "elements": [
-            {
-                "title": "przysiady",
-                "description": "przysiady razem z hantlami",
-                "weight": "10",
-                "repetitions": "15",
-                "div": {},
-                "parent": {},
-                "set": false
-            },
-            {
-                "title": "wykroki",
-                "description": "4 kg w każdej ręce",
-                "weight": "4",
-                "repetitions": "15",
-                "div": {},
-                "parent": {},
-                "set": false
-            },
-            {
-                "title": "przysiady",
-                "description": "przysiady razem z hantlami",
-                "weight": "10",
-                "repetitions": "15",
-                "div": {},
-                "parent": {},
-                "set": false
-            },
-            {
-                "title": "wykroki",
-                "description": "4 kg w każdej ręce",
-                "weight": "4",
-                "repetitions": "15",
-                "div": {},
-                "parent": {},
-                "set": false
+//tworzenie planów na podstwie informacji z bazy danych
+const CreatePlanFromDB =()=>{
+    let list =[];
+    if (DBPlans[0] == undefined){
+        //wystwetli ze nie ma ostatniej aktywnosci
+    }
+    
+    DBPlans.forEach(onePlan =>{
+        let newPlan ;
+        div = cardTemp.content.firstElementChild.cloneNode(true);
+        div.querySelector(".card__description--title").textContent = onePlan.title;
+        div.querySelector(".card__description--text").textContent = onePlan.description;
+        newPlan= new plan(onePlan.title,onePlan.description,div ,onePlan.publicPlan,onePlan.elements,onePlan.myPlan);
+        newPlan.elements= [];
+        myPlansCardContainer.appendChild(newPlan.div);
+        onePlan.elements.forEach(el =>{
+            let newElement ;
+            if (el.elements){  
+                const div = setTemp.content.firstElementChild.cloneNode(true);
+                div.querySelector(".plan__set--name").textContent = el.title;
+                el = new set(el.title,el.elements,div);
+                el.elements.forEach(el =>{
+                    const div = selectElementTemp.content.firstElementChild.cloneNode(true);
+                    div.querySelector(".select-container__element--name").textContent = el.title;
+                    el = new exercise(el.title,div ,el.description,el.weight,el.repetitions,el.set );
+                });
+                newElement = el;
+            }else{
+                const div = exerciseTemp.content.firstElementChild.cloneNode(true);
+                div.querySelector(".plan__exercise--name").textContent = el.title;
+                div.querySelector(".plan__exercise--repat").textContent = el.repetitions+ "razy";
+                div.querySelector(".plan__exercise--weight").textContent = el.weight+ "KG";
+                el = new exercise(el.title,div ,el.description,el.weight,el.repetitions,el.set );
+                newElement = el;
+                
             }
-        ],
-        "div": {},
-        "parent": {}
-    },
-    {
-        "title": "pompki",
-        "description": "",
-        "weight": "",
-        "repetitions": "15",
-        "div": {},
-        "parent": {},
-        "set": false
-    },
-    {
-        "title": "wyciskanie sztangi",
-        "description": "",
-        "weight": "45",
-        "repetitions": "14",
-        "div": {},
-        "parent": {},
-        "set": false
-    },
-    {
-        "title": "wyciskanie sztangi",
-        "description": "",
-        "weight": "50",
-        "repetitions": "12",
-        "div": {},
-        "parent": {},
-        "set": false
-    },
-    {
-        "title": "pompki",
-        "description": "","weight": "","repetitions": "15","div": {},"parent": {},"set": false},{"title": "wyciskanie sztangi","description": "","weight": "70","repetitions": "4","div": {},"parent": {},"set": false}]);
-myPlansCardContainer.appendChild(newElnew.div);
+            
+            newPlan.elements.push(newElement)
+        });
+    onePlan = newPlan;
+    list.push(newPlan);
 
+    });
+    console.log(list);
+};
+
+//zapisywanie histori
+const saveOnDBHistory = ()=>{
+    let newList =[];
+    if (planHistory[0].length > 3){
+        newList.push(planHistory[0][-1]);
+        newList.push(planHistory[0][-2]);
+        newList.push(planHistory[0][-3]);
+        planHistory[0] =  newList;
+    }
+   
+   console.log(planHistory);
+    // sendJson(planHistory, "history");
+};
